@@ -47,18 +47,15 @@ void ASCharacter::EndCrouch()
 {
 	UnCrouch();
 }
-
-
-
-
-
-
+void ASCharacter::StartJump()
+{
+	Jump();
+}
 //Handles Movement on Vertical Axis
 void ASCharacter::MoveForward(float Value)
 {
 	AddMovementInput(GetActorForwardVector() * Value);
 }
-
 //Handles Movement on Horizontal Axis
 void ASCharacter::MoveRight(float Value)
 {
@@ -80,5 +77,7 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 
 	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &ASCharacter::BeginCrouch);
 	PlayerInputComponent->BindAction("Crouch", IE_Released, this, &ASCharacter::EndCrouch);
+
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ASCharacter::StartJump);
 }
 
