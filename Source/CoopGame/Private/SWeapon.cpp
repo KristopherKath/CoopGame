@@ -58,7 +58,7 @@ void ASWeapon::Fire()
 		FHitResult Hit;
 		
 		//if blocking hit calculated
-		if (GetWorld()->LineTraceSingleByChannel(Hit, EyeLocation, TraceEnd, ECC_Visibility, QueryParams))
+		if (GetWorld()->LineTraceSingleByChannel(Hit, EyeLocation, TraceEnd, COLLISION_WEAPON, QueryParams))
 		{
 			//Blocking hit! process damage
 
