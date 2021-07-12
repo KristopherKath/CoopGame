@@ -9,6 +9,7 @@
 #include "Particles/ParticleSystemComponent.h"
 #include "PhysicalMaterials/PhysicalMaterial.h"
 #include "../CoopGame.h"
+#include "TimerManager.h"
 
 
 //Created a console variable
@@ -30,7 +31,18 @@ ASWeapon::ASWeapon()
 	TracerTargetName = "Target";
 
 	BaseDamage = 20.0f;
+
+	RateOfFire = 600;
 }
+
+
+void ASWeapon::BeginPlay()
+{
+	Super::BeginPlay();
+
+	TimeBetweenShots = 60 / RateOfFire;
+}
+
 
 
 void ASWeapon::Fire()
@@ -101,12 +113,27 @@ void ASWeapon::Fire()
 		
 		PlayFireEffects(TracerEndPoint);
 
+		LastFireTime = GetWorld()->TimeSeconds;
+
 		//For Debuging
 		if (DebugWeaponDrawing > 0)
 			DrawDebugLine(GetWorld(), EyeLocation, TraceEnd, FColor::White, false, 1.0f, 0, 1.0f);
 
 	}
 }
+
+void ASWeapon::StartFire()
+{
+	float Delay = FMath::Max(LastFireTime + TimeBetweenShots - GetWorld()->TimeSeconds, 0.0f);
+
+	GetWorldTimerManager().SetTimer(TimeHandle_TimeBetweenShots, this, &ASWeapon::Fire, TimeBetweenShots, true, Delay);
+}
+
+void ASWeapon::StopFire()
+{
+	GetWorldTimerManager().ClearTimer(TimeHandle_TimeBetweenShots);
+}
+
 
 void ASWeapon::PlayFireEffects(FVector TracerEndPoint)
 {
