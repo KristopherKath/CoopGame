@@ -67,7 +67,7 @@ protected:
 	void StopFire();
 	
 	
-
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
 	USHealthComponent* HealthComponent;
 
 	UFUNCTION()
