@@ -5,6 +5,8 @@
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/PawnMovementComponent.h"
+#include "Components/CapsuleComponent.h"
+#include "../CoopGame.h"
 #include "SWeapon.h"
 
 // Sets default values
@@ -19,6 +21,8 @@ ASCharacter::ASCharacter()
 	SpringArmComp->SetupAttachment(RootComponent);
 
 	GetMovementComponent()->GetNavAgentPropertiesRef().bCanCrouch = true; //To enable Crouching on player mesh
+
+	GetCapsuleComponent()->SetCollisionResponseToChannel(COLLISION_WEAPON, ECR_Ignore);
 
 	//Create the Camera Component to be on player
 	CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComp"));
