@@ -68,10 +68,10 @@ protected:
 	
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
-	USHealthComponent* HealthComponent;
+	USHealthComponent* HealthComp;
 
 	UFUNCTION()
-	void OnHealthChanged(USHealthComponent* HealthComp, float Health, float HealthDelta, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
+	void OnHealthChanged(USHealthComponent* OwningHealthComp, float Health, float HealthDelta, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
 
 	/* Pawn Died previously */
 	UPROPERTY(BlueprintReadOnly, Category="Player")
