@@ -16,16 +16,13 @@ void ASPowerupActor::BeginPlay()
 {
 	Super::BeginPlay();
 	
-
-
-
 }
 
 void ASPowerupActor::OnTickPowerup()
 {
 	TicksProcessed++;
 
-	OnPowerupTicked();
+	OnPowerupTicked(); //call blueprint implemented code
 
 	if (TotalNumOfTicks <= TicksProcessed)
 	{
@@ -39,8 +36,10 @@ void ASPowerupActor::OnTickPowerup()
 
 void ASPowerupActor::ActivatePowerup()
 {
+	OnActivated(); //call blueprint implemented code
+
 	if (PowerupInterval > 0.0f)
-		GetWorldTimerManager().SetTimer(TimerHandle_PowerupTick, this, &ASPowerupActor::OnTickPowerup, PowerupInterval, true, 0.0f);
+		GetWorldTimerManager().SetTimer(TimerHandle_PowerupTick, this, &ASPowerupActor::OnTickPowerup, PowerupInterval, true);
 	else
 		OnTickPowerup();
 }
