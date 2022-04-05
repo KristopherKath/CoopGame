@@ -15,16 +15,37 @@ public:
 	// Sets default values for this pawn's properties
 	ASTrackerBot();
 
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
+
+
+public:
+
+
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+
+protected:
+
 	UPROPERTY(VisibleDefaultsOnly, Category = "Components")
-	UStaticMeshComponent* MeshComp;
+		UStaticMeshComponent* MeshComp;
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	FVector GetNextPathPoint();
 
+	//Next point in nav path
+	FVector NextPathPoint;
+
+	UPROPERTY(EditDefaultsOnly, Category = "TrackerBot")
+	float MovementForce;
+
+	UPROPERTY(EditDefaultsOnly, Category = "TrackerBot")
+	bool bUseVelocityChange;
+
+	UPROPERTY(EditDefaultsOnly, Category = "TrackerBot")
+	float RequiredDistanceToTarget;
 
 };
