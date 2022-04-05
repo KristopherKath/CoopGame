@@ -20,6 +20,8 @@ ASPickupActor::ASPickupActor()
 	DecalComp->SetRelativeRotation(FRotator(90, 0.0f, 0.0f));
 
 	CooldownDuration = 10.0f;
+	
+	SetReplicates(true);
 }
 
 // Called when the game starts or when spawned
@@ -27,7 +29,8 @@ void ASPickupActor::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	Respawn();
+	if (HasAuthority())
+		 Respawn();
 }
 
 //spawns the powerup instance
@@ -50,8 +53,8 @@ void ASPickupActor::NotifyActorBeginOverlap(AActor* OtherActor)
 {
 	Super::NotifyActorBeginOverlap(OtherActor);
 
-	//TODO Grant powerup if available
-	if (PowerupInstance)
+	//Grant powerup if available
+	if (HasAuthority() && PowerupInstance)
 	{
 		PowerupInstance->ActivatePowerup();
 		PowerupInstance = nullptr;
