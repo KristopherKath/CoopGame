@@ -2,6 +2,8 @@
 
 
 #include "SPickupActor.h"
+#include "TimerManager.h"
+#include "SPowerupActor.h"
 #include "Components/SphereComponent.h"
 #include "Components/DecalComponent.h"
 
@@ -24,13 +26,38 @@ void ASPickupActor::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	Respawn();
 }
 
+//spawns the powerup instance
+void ASPickupActor::Respawn()
+{
+	if (!PowerUpClass)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("PopwerUpClass is nullptr in %s. Please update your Blueprint"), *GetName());
+		return;
+	}
+
+	FActorSpawnParameters SpawnParams;
+	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+
+	PowerupInstance = GetWorld()->SpawnActor<ASPowerupActor>(PowerUpClass, GetTransform(), SpawnParams);
+}
+
+//when collided with by actor
 void ASPickupActor::NotifyActorBeginOverlap(AActor* OtherActor)
 {
 	Super::NotifyActorBeginOverlap(OtherActor);
 
 	//TODO Grant powerup if available
+	if (PowerupInstance)
+	{
+		PowerupInstance->ActivatePowerup();
+		PowerupInstance = nullptr;
+
+		//Set Timer to respawn
+		GetWorldTimerManager().SetTimer(TimerHandle_RespawnTimer, this, &ASPickupActor::Respawn, CooldownDuration);
+	}
 }
 
 
