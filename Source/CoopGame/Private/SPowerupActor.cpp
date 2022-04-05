@@ -41,9 +41,9 @@ void ASPowerupActor::OnRep_PowerupActive()
 }
 
 //server only
-void ASPowerupActor::ActivatePowerup()
+void ASPowerupActor::ActivatePowerup(AActor* ActivateFor)
 {
-	OnActivated(); //call blueprint implemented code
+	OnActivated(ActivateFor); //call blueprint implemented code
 
 	bIsPowerupActive = true; //replicates to all clients. OnRep_PowerupActive will be called for each client
 	OnRep_PowerupActive(); //call rep function for the server as well
