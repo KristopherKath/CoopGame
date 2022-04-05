@@ -9,6 +9,7 @@
 #include "Particles/ParticleSystemComponent.h"
 #include "PhysicalMaterials/PhysicalMaterial.h"
 #include "../CoopGame.h"
+#include "Net/UnrealNetwork.h"
 #include "TimerManager.h"
 
 
@@ -49,16 +50,19 @@ void ASWeapon::BeginPlay()
 
 void ASWeapon::Fire()
 {
+	//Clients only
+	if (!HasAuthority())
+		ServerFire();
+
+
 	//Trace the world, from pawn eyes to crosshair location
 	AActor* MyOwner = GetOwner();
-
 	if (!MyOwner) return;
 
 
 	FVector EyeLocation;
 	FRotator EyeRotation;
 	MyOwner->GetActorEyesViewPoint(EyeLocation, EyeRotation); //Fill passed variables for use
-		
 	FVector ShotDirection = EyeRotation.Vector();
 	FVector TraceEnd = EyeLocation + (ShotDirection * 10000); //Trace an end location
 
@@ -72,7 +76,6 @@ void ASWeapon::Fire()
 	// Particle "Target" parameter 
 	FVector TracerEndPoint = TraceEnd;
 		
-
 	FHitResult Hit;
 	//if blocking collision calculated
 	if (GetWorld()->LineTraceSingleByChannel(Hit, EyeLocation, TraceEnd, COLLISION_WEAPON, QueryParams))
@@ -113,6 +116,11 @@ void ASWeapon::Fire()
 		
 	PlayFireEffects(TracerEndPoint);
 
+	//if run by server set hitscan end point
+	if (HasAuthority())
+		HitScanTrace.TraceTo = TracerEndPoint;
+
+
 	LastFireTime = GetWorld()->TimeSeconds;
 
 	//For Debuging
@@ -126,6 +134,26 @@ void ASWeapon::StartFire()
 
 	GetWorldTimerManager().SetTimer(TimeHandle_TimeBetweenShots, this, &ASWeapon::Fire, TimeBetweenShots, true, Delay);
 }
+
+void ASWeapon::ServerFire_Implementation()
+{
+	Fire();
+}
+
+//Validate code. If false then disconnect client
+bool ASWeapon::ServerFire_Validate()
+{
+	return true;
+}
+
+//replicates scan trace
+void ASWeapon::OnRep_HitScanTrace()
+{
+	//Play cosmetic FX
+	PlayFireEffects(HitScanTrace.TraceTo);
+
+}
+
 
 void ASWeapon::StopFire()
 {
@@ -162,4 +190,14 @@ void ASWeapon::PlayFireEffects(FVector TracerEndPoint)
 			PC->ClientStartCameraShake(FireCamShake);
 		}
 	}
+}
+
+
+
+void ASWeapon::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+
+	DOREPLIFETIME_CONDITION(ASWeapon, HitScanTrace, COND_SkipOwner); //Replicated variable to all machines
 }

@@ -12,22 +12,37 @@ class UDamageType;
 class UParticleSystem;
 class UCameraShakeBase;
 
+//Contains info of a single hitscan weapon linetrace
+USTRUCT()
+struct FHitScanTrace
+{
+	GENERATED_BODY()
+
+public:
+	UPROPERTY()
+	FVector_NetQuantize TraceForm;
+
+	UPROPERTY()
+	FVector_NetQuantize TraceTo;
+};
+
+
 UCLASS()
 class COOPGAME_API ASWeapon : public AActor
 {
 	GENERATED_BODY()
 	
-public:	
+public:
+
+	void StartFire();
+
+	void StopFire();
+
 	// Sets default values for this actor's properties
 	ASWeapon();
 
+
 protected:
-
-	virtual void BeginPlay() override;
-	virtual void Fire();
-
-	void PlayFireEffects(FVector TracerEndPoint);
-
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 		USkeletalMeshComponent* MeshComp;
@@ -69,10 +84,24 @@ protected:
 	// Derived from RateOfFire
 	float TimeBetweenShots;
 
-public:	
+	//replicate using a given function
+	UPROPERTY(ReplicatedUsing=OnRep_HitScanTrace)
+	FHitScanTrace HitScanTrace;
 
-	void StartFire();
+protected:
 
-	void StopFire();
+	//Replicated function
+	UFUNCTION()
+		void OnRep_HitScanTrace();
+
+	virtual void BeginPlay() override;
+
+	virtual void Fire();
+
+	UFUNCTION(Server, Reliable, WithValidation) //Server - will push request to hosting server, Reliable - Guarenteed to get to server, WithValidation - 
+		void ServerFire();
+
+	void PlayFireEffects(FVector TracerEndPoint);
+
 
 };
