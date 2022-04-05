@@ -25,18 +25,41 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+
+	//Movement Controls
 	void MoveForward(float Value);
 	void MoveRight(float Value);
+
 	void BeginCrouch();
 	void EndCrouch();
+
 	void StartJump();
 
+
+	//Weapon Controls
+	void BeginZoom();
+	void EndZoom();
+
+	void StartFire();
+	void StopFire();
+
+	void HandleFOV(float deltaTime);
+
+
+		//Health Functions
+	UFUNCTION() //marked to work with events
+
+	void OnHealthChanged(USHealthComponent* OwningHealthComp, float Health, float HealthDelta,
+		const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
+
+
+
+		//Camera Vars
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
 	UCameraComponent* CameraComp;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	USpringArmComponent* SpringArmComp;
-
-
 
 	UPROPERTY(EditDefaultsOnly, Category = "Player")
 	float ZoomedFOV;
@@ -48,12 +71,8 @@ protected:
 
 	bool bWantsToZoom;
 
-	void BeginZoom();
-	void EndZoom();
 
-
-
-
+		//Weapon Vars
 	ASWeapon* CurrentWeapon;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Player")
@@ -62,16 +81,10 @@ protected:
 	UPROPERTY(VisibleDefaultsOnly, Category = "Player")
 	FName WeaponAttachSocketName;
 
-	void StartFire();
-
-	void StopFire();
 	
-	
+		//Health Vars
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Components")
 	USHealthComponent* HealthComp;
-
-	UFUNCTION()
-	void OnHealthChanged(USHealthComponent* OwningHealthComp, float Health, float HealthDelta, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
 
 	/* Pawn Died previously */
 	UPROPERTY(BlueprintReadOnly, Category="Player")

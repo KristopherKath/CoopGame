@@ -19,18 +19,18 @@ ASCharacter::ASCharacter()
 
 	//Create Spring Arm Component for proper pitch rotation around character
 	SpringArmComp = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArmComp"));
-	SpringArmComp->bUsePawnControlRotation = true; //Use Rotation on this component
 	SpringArmComp->SetupAttachment(RootComponent);
-
-	GetMovementComponent()->GetNavAgentPropertiesRef().bCanCrouch = true; //To enable Crouching on player mesh
-
-	GetCapsuleComponent()->SetCollisionResponseToChannel(COLLISION_WEAPON, ECR_Ignore);
-
-	HealthComp = CreateDefaultSubobject<USHealthComponent>(TEXT("HealthComp"));
+	SpringArmComp->bUsePawnControlRotation = true; //Use Rotation on this component. Makes camera rotate around player capsule
 
 	//Create the Camera Component to be on player
 	CameraComp = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComp"));
 	CameraComp->SetupAttachment(SpringArmComp);
+
+	GetMovementComponent()->GetNavAgentPropertiesRef().bCanCrouch = true; //To enable Crouching on player mesh. Usually used for AI
+
+	GetCapsuleComponent()->SetCollisionResponseToChannel(COLLISION_WEAPON, ECR_Ignore);
+
+	HealthComp = CreateDefaultSubobject<USHealthComponent>(TEXT("HealthComp"));
 
 	ZoomedFOV = 65;
 	ZoomInterpSpeed = 20;
@@ -58,6 +58,7 @@ void ASCharacter::BeginPlay()
 		CurrentWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, WeaponAttachSocketName);
 	}
 
+	//subscribe to event
 	HealthComp->OnHealthChanged.AddDynamic(this, &ASCharacter::OnHealthChanged);
 }
 
@@ -87,17 +88,23 @@ void ASCharacter::StopFire()
 	}
 }
 
-void ASCharacter::OnHealthChanged(USHealthComponent* OwningHealthComp, float Health, float HealthDelta, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser)
+//Function that responds to OnHealthChanged Event
+void ASCharacter::OnHealthChanged(USHealthComponent* OwningHealthComp, 
+	float Health, float HealthDelta, const class UDamageType* DamageType, 
+	class AController* InstigatedBy, AActor* DamageCauser)
 {
 	if (Health <= 0.0f && !bDied)
 	{
 		// Die!
 		bDied = true;
 	
+		//stop movement
 		GetMovementComponent()->StopMovementImmediately();
+
+		//disable collision
 		GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
-		DetachFromControllerPendingDestroy();
+		DetachFromControllerPendingDestroy(); //stop input
 
 		SetLifeSpan(10.0f);
 	}
@@ -108,9 +115,14 @@ void ASCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	float TargetFOV = bWantsToZoom ? ZoomedFOV : DefaultFOV ;
+	HandleFOV(DeltaTime);
+}
 
-	float NewFOV = FMath::FInterpTo(CameraComp->FieldOfView, TargetFOV, DeltaTime, ZoomInterpSpeed);
+void ASCharacter::HandleFOV(float deltaTime)
+{
+	float TargetFOV = bWantsToZoom ? ZoomedFOV : DefaultFOV;
+
+	float NewFOV = FMath::FInterpTo(CameraComp->FieldOfView, TargetFOV, deltaTime, ZoomInterpSpeed);
 
 	CameraComp->SetFieldOfView(NewFOV);
 }
@@ -165,6 +177,7 @@ void ASCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponen
 
 }
 
+//overrides to place camera instead of capsule as shoot location
 FVector ASCharacter::GetPawnViewLocation() const
 {
 	if (CameraComp)

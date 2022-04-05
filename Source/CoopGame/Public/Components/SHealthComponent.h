@@ -28,13 +28,14 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "HealthComponent")
 	float DefaultHealth;
 
-	UFUNCTION()
+	UFUNCTION() //must mark as UFUNCTION when using Delegates (Events)
 	void HandleTakeAnyDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
 	//void HandleTakeAnyDamage(AActor* DamagedActor, float Damage, const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
 
 
 public:
 
+	//linked variable to event
 	UPROPERTY(BlueprintAssignable, Category="Events")
 	FOnHealthChangedSignature OnHealthChanged;
 };

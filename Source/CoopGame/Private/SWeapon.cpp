@@ -12,7 +12,7 @@
 #include "TimerManager.h"
 
 
-//Created a console variable
+//Created a console variable. Global
 static int32 DebugWeaponDrawing = 0;
 FAutoConsoleVariableRef CVARDebugWeaponDrawing(
 	TEXT("COOP.DebugWeapons"), 
@@ -24,7 +24,7 @@ FAutoConsoleVariableRef CVARDebugWeaponDrawing(
 ASWeapon::ASWeapon()
 {
 	MeshComp = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("MeshComp"));
-	RootComponent = MeshComp;
+	RootComponent = MeshComp; //set mesh as new root
 
 	MuzzleSocketName = "MuzzleSocket";
 
@@ -48,78 +48,74 @@ void ASWeapon::BeginPlay()
 void ASWeapon::Fire()
 {
 	//Trace the world, from pawn eyes to crosshair location
-
 	AActor* MyOwner = GetOwner();
-	if (MyOwner)
+
+	if (!MyOwner) return;
+
+
+	FVector EyeLocation;
+	FRotator EyeRotation;
+	MyOwner->GetActorEyesViewPoint(EyeLocation, EyeRotation); //Fill passed variables for use
+		
+	FVector ShotDirection = EyeRotation.Vector();
+	FVector TraceEnd = EyeLocation + (ShotDirection * 10000); //Trace an end location
+
+	//Collision Paramaters
+	FCollisionQueryParams QueryParams;
+	QueryParams.AddIgnoredActor(MyOwner);
+	QueryParams.AddIgnoredActor(this);
+	QueryParams.bTraceComplex = true; //Does very specific tracing (more expensive). So we can calculate headshots
+	QueryParams.bReturnPhysicalMaterial = true; //get data on what type of material hit
+
+	// Particle "Target" parameter 
+	FVector TracerEndPoint = TraceEnd;
+		
+
+	FHitResult Hit;
+	//if blocking collision calculated
+	if (GetWorld()->LineTraceSingleByChannel(Hit, EyeLocation, TraceEnd, COLLISION_WEAPON, QueryParams))
 	{
-		FVector EyeLocation;
-		FRotator EyeRotation;
-		MyOwner->GetActorEyesViewPoint(EyeLocation, EyeRotation); //Fill passed variables for use
-		
-		FVector ShotDirection = EyeRotation.Vector();
+		AActor* HitActor = Hit.GetActor();
 
-		FVector TraceEnd = EyeLocation + (ShotDirection * 10000); //Trace an end location
+		// Select the proper impact effect and play it
+		EPhysicalSurface SurfaceType = UPhysicalMaterial::DetermineSurfaceType(Hit.PhysMaterial.Get());
 
-		FCollisionQueryParams QueryParams;
-		QueryParams.AddIgnoredActor(MyOwner);
-		QueryParams.AddIgnoredActor(this);
-		QueryParams.bTraceComplex = true; //Does very specific tracing (more expensive). So we can calculate headshots
-		QueryParams.bReturnPhysicalMaterial = true;
-
-		// Particle "Target" parameter 
-		FVector TracerEndPoint = TraceEnd;
-		
-		FHitResult Hit;
-		
-		//if blocking hit calculated
-		if (GetWorld()->LineTraceSingleByChannel(Hit, EyeLocation, TraceEnd, COLLISION_WEAPON, QueryParams))
+		//Set Damage Amount
+		float ActualDamage = BaseDamage;
+		if (SurfaceType == SURFACE_FLESHVULNERABLE)
+			ActualDamage *= 4.0f;
+			
+		//Apply Damage to hit Actor
+		UGameplayStatics::ApplyPointDamage(HitActor, ActualDamage, ShotDirection, Hit, 
+			MyOwner->GetInstigatorController(), this, DamageType);
+			
+		UParticleSystem* SelectedEffect = nullptr;
+		switch (SurfaceType)
 		{
-			//Blocking hit! process damage
-
-			AActor* HitActor = Hit.GetActor();
-
-
-			// Select the proper impact effect and play it
-			EPhysicalSurface SurfaceType = UPhysicalMaterial::DetermineSurfaceType(Hit.PhysMaterial.Get());
-
-			//Set Damage Amount
-			float ActualDamage = BaseDamage;
-			if (SurfaceType == SURFACE_FLESHVULNERABLE)
-			{
-				ActualDamage *= 4.0f;
-			}
-			
-			//Apply Damage to hit Actor
-			UGameplayStatics::ApplyPointDamage(HitActor, ActualDamage, ShotDirection, Hit, MyOwner->GetInstigatorController(), this, DamageType);
-			
-			UParticleSystem* SelectedEffect = nullptr;
-			switch (SurfaceType)
-			{
-			case SURFACE_FLESHDEFAULT:
-			case SURFACE_FLESHVULNERABLE:
-				SelectedEffect = FleshImpactEffect;
-				break;
-			default:
-				SelectedEffect = DefaultImpactEffect;
-				break;
-			}
-			if (SelectedEffect)
-			{
-				UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), SelectedEffect, Hit.ImpactPoint, Hit.ImpactNormal.Rotation());
-			}
-
-			TracerEndPoint = Hit.ImpactPoint;
+		case SURFACE_FLESHDEFAULT:
+		case SURFACE_FLESHVULNERABLE:
+			SelectedEffect = FleshImpactEffect;
+			break;
+		default:
+			SelectedEffect = DefaultImpactEffect;
+			break;
 		}
-		
-		PlayFireEffects(TracerEndPoint);
+		if (SelectedEffect)
+		{
+			UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), SelectedEffect, 
+				Hit.ImpactPoint, Hit.ImpactNormal.Rotation());
+		}
 
-		LastFireTime = GetWorld()->TimeSeconds;
-
-		//For Debuging
-		if (DebugWeaponDrawing > 0)
-			DrawDebugLine(GetWorld(), EyeLocation, TraceEnd, FColor::White, false, 1.0f, 0, 1.0f);
-
+		TracerEndPoint = Hit.ImpactPoint;
 	}
+		
+	PlayFireEffects(TracerEndPoint);
+
+	LastFireTime = GetWorld()->TimeSeconds;
+
+	//For Debuging
+	if (DebugWeaponDrawing > 0)
+		DrawDebugLine(GetWorld(), EyeLocation, TraceEnd, FColor::White, false, 1.0f, 0, 1.0f);
 }
 
 void ASWeapon::StartFire()
