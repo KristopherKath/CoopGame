@@ -7,7 +7,9 @@
 #include "NavigationPath.h"
 #include "GameFramework/Character.h"
 #include "DrawDebugHelpers.h"
+#include "SCharacter.h"
 #include "Components/SHealthComponent.h"
+#include "Components/SphereComponent.h"
 
 // Sets default values
 ASTrackerBot::ASTrackerBot()
@@ -19,6 +21,13 @@ ASTrackerBot::ASTrackerBot()
 	MeshComp->SetCanEverAffectNavigation(false);
 	MeshComp->SetSimulatePhysics(true);
 	RootComponent = MeshComp;
+
+	SphereComp = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComp"));
+	SphereComp->SetSphereRadius(200);
+	SphereComp->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	SphereComp->SetCollisionResponseToAllChannels(ECR_Ignore);
+	SphereComp->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
+	SphereComp->SetupAttachment(RootComponent);
 
 	HealthComp = CreateDefaultSubobject<USHealthComponent>(TEXT("HealthComp"));
 	HealthComp->OnHealthChanged.AddDynamic(this, &ASTrackerBot::HandleTakeDamage);
@@ -42,22 +51,6 @@ void ASTrackerBot::BeginPlay()
 	
 }
 
-FVector ASTrackerBot::GetNextPathPoint()
-{
-	//hack to get path
-	ACharacter* PlayerPawn = UGameplayStatics::GetPlayerCharacter(this, 0);
-
-	UNavigationPath* NavPath = UNavigationSystemV1::FindPathToActorSynchronously(this, GetActorLocation(), PlayerPawn);
-
-	if (NavPath->PathPoints.Num() > 1)
-	{
-		//Return next point in path
-		return NavPath->PathPoints[1];
-	}
-
-	//Failed to find path
-	return GetActorLocation();
-}
 
 // Called every frame
 void ASTrackerBot::Tick(float DeltaTime)
@@ -83,6 +76,23 @@ void ASTrackerBot::Tick(float DeltaTime)
 	}
 
 	DrawDebugSphere(GetWorld(), NextPathPoint, 20, 12, FColor::Yellow, false, 4.0f, 1.0f);
+}
+
+FVector ASTrackerBot::GetNextPathPoint()
+{
+	//hack to get path
+	ACharacter* PlayerPawn = UGameplayStatics::GetPlayerCharacter(this, 0);
+
+	UNavigationPath* NavPath = UNavigationSystemV1::FindPathToActorSynchronously(this, GetActorLocation(), PlayerPawn);
+
+	if (NavPath->PathPoints.Num() > 1)
+	{
+		//Return next point in path
+		return NavPath->PathPoints[1];
+	}
+
+	//Failed to find path
+	return GetActorLocation();
 }
 
 void ASTrackerBot::SelfDestruct()
@@ -123,4 +133,26 @@ void ASTrackerBot::HandleTakeDamage(USHealthComponent* OwningHealthComp,
 	{
 		SelfDestruct();
 	}
+}
+
+void ASTrackerBot::NotifyActorBeginOverlap(AActor* OtherActor)
+{
+	if (!bStartedSelfDestruction)
+	{
+		ASCharacter* PlayerPawn = Cast<ASCharacter>(OtherActor);
+		if (PlayerPawn)
+		{
+			//We overlapped with player
+
+			//Start self destruction sequence
+			GetWorldTimerManager().SetTimer(TimerHandle_SelfDamage, this, &ASTrackerBot::DamageSelf, 0.5f, true, 0.0f);
+
+			bStartedSelfDestruction = true;
+		}
+	}
+}
+
+void ASTrackerBot::DamageSelf()
+{
+	UGameplayStatics::ApplyDamage(this, 20, GetInstigatorController(), this, nullptr);
 }
