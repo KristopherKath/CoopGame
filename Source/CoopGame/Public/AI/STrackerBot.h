@@ -35,6 +35,8 @@ protected:
 		float Health, float HealthDelta, const class UDamageType* DamageType,
 		class AController* InstigatedBy, AActor* DamageCauser);
 
+	void SelfDestruct();
+
 protected:
 
 	UPROPERTY(VisibleDefaultsOnly, Category = "Components")
@@ -57,6 +59,18 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "TrackerBot")
 	float RequiredDistanceToTarget;
 
+	//Dynamic material to pulse on dmg
+	UMaterialInstanceDynamic* MatInst;
 
+	UPROPERTY(EditDefaultsOnly, Category = "TrackerBot")
+	UParticleSystem* ExplosionEffect;
+
+	bool bExploded;
+
+	UPROPERTY(EditDefaultsOnly, Category = "TrackerBot")
+	float ExplosionRadius;
+
+	UPROPERTY(EditDefaultsOnly, Category = "TrackerBot")
+		float ExplosionDamage;
 
 };

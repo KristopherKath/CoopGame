@@ -26,6 +26,10 @@ ASTrackerBot::ASTrackerBot()
 	bUseVelocityChange = false;
 	MovementForce = 1000;
 	RequiredDistanceToTarget = 100;
+
+	bExploded = false;
+	ExplosionDamage = 40;
+	ExplosionRadius = 150;
 }
 
 // Called when the game starts or when spawned
@@ -81,7 +85,25 @@ void ASTrackerBot::Tick(float DeltaTime)
 	DrawDebugSphere(GetWorld(), NextPathPoint, 20, 12, FColor::Yellow, false, 4.0f, 1.0f);
 }
 
+void ASTrackerBot::SelfDestruct()
+{
+	if (bExploded) return;
 
+	bExploded = true;
+
+	UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), ExplosionEffect, GetActorLocation());
+
+	TArray<AActor*> IgnoredActors;
+	IgnoredActors.Add(this);
+
+	//Apply Damage
+	UGameplayStatics::ApplyRadialDamage(this, ExplosionDamage, GetActorLocation(), ExplosionRadius, nullptr,
+		IgnoredActors, this, GetInstigatorController(), true);
+
+	DrawDebugSphere(GetWorld(), GetActorLocation(), ExplosionRadius, 12, FColor::Red, false, 2.0f, 0, 1.0f);
+
+	Destroy();
+}
 
 void ASTrackerBot::HandleTakeDamage(USHealthComponent* OwningHealthComp,
 	float Health, float HealthDelta, const class UDamageType* DamageType,
@@ -89,7 +111,16 @@ void ASTrackerBot::HandleTakeDamage(USHealthComponent* OwningHealthComp,
 {
 	//EXplode on health = 0
 
-	//TDO: Pulse the material on hit
+	if (!MatInst)
+		MatInst = MeshComp->CreateAndSetMaterialInstanceDynamicFromMaterial(0, MeshComp->GetMaterial(0));
+	
+	if (MatInst)
+		MatInst->SetScalarParameterValue("LastTimeDamagetaken", GetWorld()->TimeSeconds);
 
 	UE_LOG(LogTemp, Log, TEXT("Health %s of %s"), *FString::SanitizeFloat(Health), *GetName());
+
+	if (Health <= 0.0f)
+	{
+		SelfDestruct();
+	}
 }
