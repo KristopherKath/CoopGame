@@ -11,7 +11,6 @@
 #include "SWeapon.h"
 #include "Net/UnrealNetwork.h"
 
-
 // Sets default values
 ASCharacter::ASCharacter()
 {
@@ -193,6 +192,8 @@ FVector ASCharacter::GetPawnViewLocation() const
 
 	return Super::GetPawnViewLocation();
 }
+
+
 
 
 
