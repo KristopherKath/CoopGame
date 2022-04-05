@@ -94,7 +94,9 @@ void ASCharacter::StopFire()
 	}
 }
 
+
 //Function that responds to OnHealthChanged Event
+// Health comp only set by server, so only called by server
 void ASCharacter::OnHealthChanged(USHealthComponent* OwningHealthComp, 
 	float Health, float HealthDelta, const class UDamageType* DamageType, 
 	class AController* InstigatedBy, AActor* DamageCauser)
@@ -200,4 +202,5 @@ void ASCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifet
 
 
 	DOREPLIFETIME(ASCharacter, CurrentWeapon); //Replicated variable to all machines
+	DOREPLIFETIME(ASCharacter, bDied);
 }
