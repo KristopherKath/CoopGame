@@ -12,6 +12,8 @@ USHealthComponent::USHealthComponent()
 
 	bIsDead = false;
 
+	TeamNum = 255;
+
 	SetIsReplicated(true); //set component to replicate
 }
 
@@ -19,7 +21,7 @@ USHealthComponent::USHealthComponent()
 // Called when the game starts
 void USHealthComponent::BeginPlay()
 {
-	Super::BeginPlay();	
+	Super::BeginPlay();
 
 	//only hook if we are server
 	if (GetOwnerRole() == ROLE_Authority)
@@ -38,6 +40,10 @@ void USHealthComponent::HandleTakeAnyDamage(AActor* DamagedActor, float Damage, 
 {
 	if (Damage <= 0.0f || bIsDead)
 		return;
+
+	if (DamageCauser != DamagedActor && IsFriendly(DamagedActor, DamageCauser))
+		return;
+
 
 	// Update Health Clamped
 	Health = FMath::Clamp(Health - Damage, 0.0f, DefaultHealth);
@@ -77,6 +83,21 @@ void USHealthComponent::Heal(float HealAmount)
 
 	//signal health changed
 	OnHealthChanged.Broadcast(this, Health, -HealAmount, nullptr, nullptr, nullptr);
+}
+
+bool USHealthComponent::IsFriendly(AActor* ActorA, AActor* ActorB)
+{
+	if (ActorA == nullptr || ActorB == nullptr) 
+		return true;
+
+	USHealthComponent* HealthCompA = Cast<USHealthComponent>(ActorA->GetComponentByClass(USHealthComponent::StaticClass()));
+	USHealthComponent* HealthCompB = Cast<USHealthComponent>(ActorB->GetComponentByClass(USHealthComponent::StaticClass()));
+
+
+	if (HealthCompA == nullptr || HealthCompB == nullptr) 
+		return true;
+
+	return HealthCompA->TeamNum == HealthCompB->TeamNum;
 }
 
 //triggered on clients
