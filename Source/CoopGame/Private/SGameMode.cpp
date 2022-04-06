@@ -59,12 +59,15 @@ void ASGameMode::EndWave()
 	SetWaveState(EWaveState::WaitingToComplete);
 }
 
+
 void ASGameMode::PrepareForNextWave()
 {
 
 	GetWorldTimerManager().SetTimer(TimerHandle_NextWaveStart, this, &ASGameMode::StartWave, TimeBetweenWaves, false);
 
 	SetWaveState(EWaveState::WaitingToStart);
+
+	RestartDeadPlayers();
 }
 
 void ASGameMode::CheckWaveState()
@@ -136,6 +139,19 @@ void ASGameMode::GameOver()
 	SetWaveState(EWaveState::GameOver);
 
 	UE_LOG(LogTemp, Log, TEXT("GAME OVER! Players Died!"));
+}
+
+//respawn players
+void ASGameMode::RestartDeadPlayers()
+{
+	for (FConstPlayerControllerIterator It = GetWorld()->GetPlayerControllerIterator(); It; It++)
+	{
+		APlayerController* PC = It->Get();
+		if (PC && PC->GetPawn() == nullptr)
+		{
+			RestartPlayer(PC);
+		}
+	}
 }
 
 void ASGameMode::SetWaveState(EWaveState NewState)
