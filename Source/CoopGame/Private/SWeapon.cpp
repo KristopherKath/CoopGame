@@ -33,6 +33,8 @@ ASWeapon::ASWeapon()
 
 	BaseDamage = 20.0f;
 
+	BulletSpread = 1.0f;
+
 	RateOfFire = 600;
 
 	SetReplicates(true); //when spawned on server, will also spawn on clients
@@ -66,7 +68,12 @@ void ASWeapon::Fire()
 	FVector EyeLocation;
 	FRotator EyeRotation;
 	MyOwner->GetActorEyesViewPoint(EyeLocation, EyeRotation); //Fill passed variables for use
+
 	FVector ShotDirection = EyeRotation.Vector();
+
+	float HalfRad = FMath::DegreesToRadians(BulletSpread);
+	ShotDirection = FMath::VRandCone(ShotDirection, HalfRad, HalfRad);
+
 	FVector TraceEnd = EyeLocation + (ShotDirection * 10000); //Trace an end location
 
 	//Collision Paramaters

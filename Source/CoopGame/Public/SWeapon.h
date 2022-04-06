@@ -84,6 +84,10 @@ protected:
 	// Derived from RateOfFire
 	float TimeBetweenShots;
 
+	/* Bullet spread in degrees */
+	UPROPERTY(EditDefaultsOnly, Category = "Weapon", meta=(ClampMin=0.0f))
+	float BulletSpread;
+
 	//replicate using a given function
 	UPROPERTY(ReplicatedUsing=OnRep_HitScanTrace)
 	FHitScanTrace HitScanTrace;
