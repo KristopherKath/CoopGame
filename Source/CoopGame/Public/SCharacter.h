@@ -41,8 +41,7 @@ protected:
 	void BeginZoom();
 	void EndZoom();
 
-	void StartFire();
-	void StopFire();
+
 
 	void HandleFOV(float deltaTime);
 
@@ -96,6 +95,12 @@ protected:
 
 
 public:	
+
+	UFUNCTION(BlueprintCallable, Category = "Player")
+		void StartFire();
+	UFUNCTION(BlueprintCallable, Category = "Player")
+		void StopFire();
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
