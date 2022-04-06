@@ -74,8 +74,9 @@ void ASTrackerBot::Tick(float DeltaTime)
 	}
 	else
 	{
-		FVector ForceDirection = NextPathPoint - GetActorLocation();
+		FVector ForceDirection = (NextPathPoint - GetActorLocation());
 		ForceDirection *= MovementForce;
+		ForceDirection.Normalize();
 
 		MeshComp->AddForce(ForceDirection, NAME_None, bUseVelocityChange);
 		DrawDebugDirectionalArrow(GetWorld(), GetActorLocation(), GetActorLocation() + ForceDirection, 

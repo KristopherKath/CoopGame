@@ -40,6 +40,8 @@ protected:
 
 public:
 
+	float GetHealth() const;
+
 	//linked variable to event
 	UPROPERTY(BlueprintAssignable, Category="Events")
 	FOnHealthChangedSignature OnHealthChanged;
