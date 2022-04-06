@@ -70,7 +70,7 @@ void ASTrackerBot::Tick(float DeltaTime)
 	{
 		NextPathPoint = GetNextPathPoint();
 
-		DrawDebugString(GetWorld(), GetActorLocation(), "TargetReached");
+		//DrawDebugString(GetWorld(), GetActorLocation(), "TargetReached");
 	}
 	else
 	{
@@ -80,11 +80,11 @@ void ASTrackerBot::Tick(float DeltaTime)
 		ForceDirection *= MovementForce;
 
 		MeshComp->AddForce(ForceDirection, NAME_None, bUseVelocityChange);
-		DrawDebugDirectionalArrow(GetWorld(), GetActorLocation(), GetActorLocation() + ForceDirection, 
-			32, FColor::Yellow, false, 0.0f, 0, 1.0f);
+		//DrawDebugDirectionalArrow(GetWorld(), GetActorLocation(), GetActorLocation() + ForceDirection, 
+		//	32, FColor::Yellow, false, 0.0f, 0, 1.0f);
 	}
 
-	DrawDebugSphere(GetWorld(), NextPathPoint, 20, 12, FColor::Yellow, false, 4.0f, 1.0f);
+	//DrawDebugSphere(GetWorld(), NextPathPoint, 20, 12, FColor::Yellow, false, 4.0f, 1.0f);
 }
 
 FVector ASTrackerBot::GetNextPathPoint()
