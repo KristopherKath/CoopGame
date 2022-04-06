@@ -86,4 +86,8 @@ protected:
 	USoundCue* ExplodeSound;
 
 	float SelfDamageInterval;
+
+	FTimerHandle TimerHandle_RefreshPath;
+
+	void RefreshPath();
 };
