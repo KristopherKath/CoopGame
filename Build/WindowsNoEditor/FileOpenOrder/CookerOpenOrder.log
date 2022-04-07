@@ -34,22 +34,22 @@
 "../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/Stand_to_Crouch_Rifle_Hip.uasset" 33
 "../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/Stand_to_Crouch_Rifle_Ironsights.uasset" 34
 "../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/Stand_To_Prone.uasset" 35
-"../../../Engine/Content/Functions/MaterialLayerFunctions/MatLayerBlend_AO.uasset" 36
-"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Utility/BlendAngleCorrectedNormals.uasset" 37
-"../../../Engine/Content/Functions/MaterialLayerFunctions/MatLayerBlend_Simple.uasset" 38
-"../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/UE4_Mannequin/Materials/MaterialLayers/T_ML_Rubber_Blue_01_D.uasset" 39
-"../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/UE4_Mannequin/Materials/MaterialLayers/T_ML_Rubber_Blue_01_N.uasset" 40
-"../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/UE4_Mannequin/Materials/MaterialLayers/ML_GlossyBlack_Latex_UE4.uasset" 41
-"../../../Engine/Content/Functions/MaterialLayerFunctions/MatLayerBlend_NormalBlend.uasset" 42
-"../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/UE4_Mannequin/Textures/UE4_LOGO_CARD.uasset" 43
-"../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/UE4_Mannequin/Materials/MaterialLayers/ML_Plastic_Shiny_Beige_LOGO.uasset" 44
-"../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/UE4_Mannequin/Textures/UE4_Mannequin__normals.uasset" 45
-"../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/UE4_Mannequin/Textures/UE4_Mannequin_MAT_MASKA.uasset" 46
-"../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/UE4_Mannequin/Materials/MaterialLayers/T_ML_Aluminum01.uasset" 47
-"../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/UE4_Mannequin/Materials/MaterialLayers/T_ML_Aluminum01_N.uasset" 48
-"../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/UE4_Mannequin/Materials/MaterialLayers/ML_SoftMetal_UE4.uasset" 49
-"../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/UE4_Mannequin/Textures/UE4_Mannequin_occlusion_Mobile.uasset" 50
-"../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/UE4_Mannequin/Materials/MaterialLayers/ML_Plastic_Shiny_Beige.uasset" 51
+"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Utility/BlendAngleCorrectedNormals.uasset" 36
+"../../../Engine/Content/Functions/MaterialLayerFunctions/MatLayerBlend_AO.uasset" 37
+"../../../Engine/Content/Functions/MaterialLayerFunctions/MatLayerBlend_NormalBlend.uasset" 38
+"../../../Engine/Content/Functions/MaterialLayerFunctions/MatLayerBlend_Simple.uasset" 39
+"../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/UE4_Mannequin/Materials/MaterialLayers/T_ML_Rubber_Blue_01_D.uasset" 40
+"../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/UE4_Mannequin/Materials/MaterialLayers/T_ML_Rubber_Blue_01_N.uasset" 41
+"../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/UE4_Mannequin/Materials/MaterialLayers/ML_GlossyBlack_Latex_UE4.uasset" 42
+"../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/UE4_Mannequin/Materials/MaterialLayers/ML_Plastic_Shiny_Beige.uasset" 43
+"../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/UE4_Mannequin/Textures/UE4_LOGO_CARD.uasset" 44
+"../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/UE4_Mannequin/Materials/MaterialLayers/ML_Plastic_Shiny_Beige_LOGO.uasset" 45
+"../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/UE4_Mannequin/Materials/MaterialLayers/T_ML_Aluminum01.uasset" 46
+"../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/UE4_Mannequin/Materials/MaterialLayers/T_ML_Aluminum01_N.uasset" 47
+"../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/UE4_Mannequin/Materials/MaterialLayers/ML_SoftMetal_UE4.uasset" 48
+"../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/UE4_Mannequin/Textures/UE4_Mannequin__normals.uasset" 49
+"../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/UE4_Mannequin/Textures/UE4_Mannequin_MAT_MASKA.uasset" 50
+"../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/UE4_Mannequin/Textures/UE4_Mannequin_occlusion_Mobile.uasset" 51
 "../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/UE4_Mannequin/Materials/M_UE4Man_Body.uasset" 52
 "../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/UE4_Mannequin/Textures/UE4Man_Logo_N.uasset" 53
 "../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/UE4_Mannequin/Materials/M_UE4Man_ChestLogo.uasset" 54
@@ -90,8 +90,8 @@
 "../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/Explosion/M_Burst.uasset" 89
 "../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/Explosion/P_Explosion.uasset" 90
 "../../../Engine/Content/Functions/Engine_MaterialFunctions01/Opacity/CameraDepthFade.uasset" 91
-"../../../Engine/Content/EngineMaterials/T_Default_Material_Grid_M.uasset" 92
-"../../../Engine/Content/EngineMaterials/T_Default_Material_Grid_N.uasset" 93
+"../../../Engine/Content/EngineMaterials/T_Default_Material_Grid_N.uasset" 92
+"../../../Engine/Content/EngineMaterials/T_Default_Material_Grid_M.uasset" 93
 "../../../Engine/Content/EngineMaterials/DefaultMaterial.uasset" 94
 "../../../Engine/Content/BasicShapes/Sphere.uasset" 95
 "../../../Engine/Content/BasicShapes/BasicShapeMaterial.uasset" 96
@@ -336,92 +336,92 @@
 "../../../Engine/Content/EngineSky/T_Sky_Stars.uasset" 335
 "../../../Engine/Content/EngineSky/T_Sky_Clouds_M.uasset" 336
 "../../../Engine/Content/EngineSky/T_Sky_Blue.uasset" 337
-"../../../Engine/Content/EngineSky/M_Sky_Panning_Clouds2.uasset" 338
-"../../../Engine/Content/EngineMaterials/Grid.uasset" 339
-"../../../Engine/Content/EditorMaterials/Thumbnails/FloorPlaneMaterial.uasset" 340
-"../../../Engine/Content/EditorMaterials/Cloth/CameraLitDoubleSided.uasset" 341
-"../../../Engine/Content/EditorBlueprintResources/StandardMacros.uasset" 342
-"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Utility/Sine_Remapped.uasset" 343
-"../../../../../../Unreal Projects/CoopGame/Content/Powerups/M_PowerupLightFunction.uasset" 344
-"../../../../../../Unreal Projects/CoopGame/Content/Powerups/BP_Powerup_Base.uasset" 345
-"../../../../../../Unreal Projects/CoopGame/Content/Powerups/M_Powerup.uasset" 346
-"../../../../../../Unreal Projects/CoopGame/Content/Powerups/MI_PowerupHealth.uasset" 347
-"../../../../../../Unreal Projects/CoopGame/Content/Powerups/HealthIcon.uasset" 348
-"../../../../../../Unreal Projects/CoopGame/Content/Powerups/Powerup_HealthRegen.uasset" 349
-"../../../../../../Unreal Projects/CoopGame/Content/Powerups/MI_PowerupSpeed.uasset" 350
-"../../../../../../Unreal Projects/CoopGame/Content/Powerups/SpeedIcon.uasset" 351
-"../../../../../../Unreal Projects/CoopGame/Content/Powerups/Powerup_SuperSpeed.uasset" 352
-"../../../../../../Unreal Projects/CoopGame/Content/Powerups/T_CircleMask3.uasset" 353
-"../../../../../../Unreal Projects/CoopGame/Content/Powerups/M_PowerupDecal.uasset" 354
-"../../../../../../Unreal Projects/CoopGame/Content/Powerups/BP_TestPickup.uasset" 355
-"../../../../../../Unreal Projects/CoopGame/Content/Weapons/SK_Rifle_Skeleton.uasset" 356
-"../../../../../../Unreal Projects/CoopGame/Content/Weapons/Crosshairs/T_Crosshair_Scanline_M.uasset" 357
-"../../../../../../Unreal Projects/CoopGame/Content/Weapons/Crosshairs/T_Crosshair_Horizontal_M.uasset" 358
-"../../../../../../Unreal Projects/CoopGame/Content/Weapons/Crosshairs/M_Crosshairs_MultiHolo_Scanline.uasset" 359
-"../../../../../../Unreal Projects/CoopGame/Content/Weapons/MagGun_02_N.uasset" 360
-"../../../../../../Unreal Projects/CoopGame/Content/Weapons/MI_Rifle02.uasset" 361
-"../../../../../../Unreal Projects/CoopGame/Content/Weapons/MI_Rifle01.uasset" 362
-"../../../../../../Unreal Projects/CoopGame/Content/Weapons/SK_Rifle.uasset" 363
-"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/Muzzle/MuzzleTwo_2048_6x6.uasset" 364
-"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/Muzzle/MuzzleSmokeOne_1024_11x11.uasset" 365
-"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/Muzzle/MuzzleFlash_Master.uasset" 366
-"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/Muzzle/MuzzleFlash_Master_Inst.uasset" 367
-"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/Muzzle/MuzzleFlash_Master_Inst_2.uasset" 368
-"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/Muzzle/P_Muzzle_Large.uasset" 369
-"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/GenericImpact/T_SparkCore_2X2.uasset" 370
-"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/GenericImpact/M_spark_subUV.uasset" 371
-"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/GenericImpact/Flare_02.uasset" 372
-"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/GenericImpact/M_LensFlare_02.uasset" 373
-"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/GenericImpact/P_RifleImpact.uasset" 374
-"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/BloodImpact/T_BloodSplat_03_SubUV.uasset" 375
-"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/BloodImpact/M_blood_splash_03.uasset" 376
-"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/BloodImpact/T_BloodSplatter_Frames01.uasset" 377
-"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/BloodImpact/M_blood_splash_01.uasset" 378
-"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/BloodImpact/clouds_dust_detail_01.uasset" 379
-"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/BloodImpact/M_blood_cloud_01.uasset" 380
-"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/BloodImpact/P_blood_splash_02.uasset" 381
-"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/BasicTracer/Beam.uasset" 382
-"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/BasicTracer/M_Beam.uasset" 383
-"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/BasicTracer/P_SmokeTrail.uasset" 384
-"../../../../../../Unreal Projects/CoopGame/Content/Blueprints/CamShake_RifleFire.uasset" 385
-"../../../../../../Unreal Projects/CoopGame/Content/AdvancedAI/BP_Rifle_AI.uasset" 386
-"../../../../../../Unreal Projects/CoopGame/Content/AdvancedAI/EnvQueryContext_TargetActor.uasset" 387
-"../../../../../../Unreal Projects/CoopGame/Content/AdvancedAI/EQS_FindMoveTo.uasset" 388
-"../../../../../../Unreal Projects/CoopGame/Content/AdvancedAI/Task_AttackTarget.uasset" 389
-"../../../../../../Unreal Projects/CoopGame/Content/AdvancedAI/Service_SelectTargetActor.uasset" 390
-"../../../../../../Unreal Projects/CoopGame/Content/AdvancedAI/Decorator_DistanceTo.uasset" 391
-"../../../../../../Unreal Projects/CoopGame/Content/AdvancedAI/BB_AdvancedAI.uasset" 392
-"../../../../../../Unreal Projects/CoopGame/Content/Blueprints/BP_Rifle.uasset" 393
-"../../../../../../Unreal Projects/CoopGame/Content/UI/WBP_Crosshair.uasset" 394
-"../../../../../../Unreal Projects/CoopGame/Content/UI/T_HealthMask.uasset" 395
-"../../../../../../Unreal Projects/CoopGame/Content/UI/M_HealthIndicator.uasset" 396
-"../../../../../../Unreal Projects/CoopGame/Content/UI/WBP_HealthIndicator.uasset" 397
-"../../../../../../Unreal Projects/CoopGame/Content/Blueprints/PlayerPawn.uasset" 398
-"../../../../../../Unreal Projects/CoopGame/Content/AdvancedAI/EQS_FindNearestPlayer.uasset" 399
-"../../../../../../Unreal Projects/CoopGame/Content/AdvancedAI/BT_AdvancedAI.uasset" 400
-"../../../../../../Unreal Projects/CoopGame/Content/AdvancedAI/BP_AdvancedAI.uasset" 401
-"../../../../../../Unreal Projects/CoopGame/Content/Blueprints/BP_GameState.uasset" 402
-"../../../../../../Unreal Projects/CoopGame/Content/Blueprints/EnvQueryCOntext_AllPlayers.uasset" 403
-"../../../../../../Unreal Projects/CoopGame/Content/Blueprints/EnvQueryContext_BotSpawns.uasset" 404
-"../../../../../../Unreal Projects/CoopGame/Content/Blueprints/EQS_FindSpawnLocation.uasset" 405
-"../../../../../../Unreal Projects/CoopGame/Content/Blueprints/BP_TestGameMode.uasset" 406
-"../../../Engine/Content/EngineSky/SM_SkySphere.uasset" 407
-"../../../Engine/Content/EngineSky/C_Sky_Zenith_Color.uasset" 408
-"../../../Engine/Content/EngineSky/C_Sky_Horizon_Color.uasset" 409
-"../../../Engine/Content/EngineSky/C_Sky_Cloud_Color.uasset" 410
-"../../../Engine/Content/EngineSky/BP_Sky_Sphere.uasset" 411
-"../../../../../../Unreal Projects/CoopGame/Content/Maps/P_Blockout.umap" 412
-"../../../Engine/Content/MapTemplates/SM_Template_Map_Floor.uasset" 413
-"../../../Engine/Content/BasicShapes/Cube.uasset" 414
-"../../../../../../Unreal Projects/CoopGame/Content/Maps/P_TestMap_BuiltData.uasset" 415
-"../../../../../../Unreal Projects/CoopGame/Content/Maps/P_TestMap.umap" 416
-"../../../../../../Unreal Projects/CoopGame/Content/Environment/MF_WorldUVs.uasset" 417
-"../../../Engine/Content/VREditor/BasicMeshes/T_CleanFloorGrunge_01_D.uasset" 418
-"../../../../../../Unreal Projects/CoopGame/Content/Environment/M_BlockoutSimple.uasset" 419
-"../../../../../../Unreal Projects/CoopGame/Content/Environment/MI_BlockoutSimple_Inst.uasset" 420
-"../../../../../../Unreal Projects/CoopGame/Content/Environment/M_BasicBox.uasset" 421
-"../../../../../../Unreal Projects/CoopGame/Content/Maps/Blockout_P_BuiltData.uasset" 422
-"../../../../../../Unreal Projects/CoopGame/Content/Maps/Blockout_P.umap" 423
+"../../../Engine/Content/BasicShapes/Cube.uasset" 338
+"../../../Engine/Content/VREditor/BasicMeshes/T_CleanFloorGrunge_01_D.uasset" 339
+"../../../../../../Unreal Projects/CoopGame/Content/Environment/MF_WorldUVs.uasset" 340
+"../../../../../../Unreal Projects/CoopGame/Content/Environment/M_BlockoutSimple.uasset" 341
+"../../../../../../Unreal Projects/CoopGame/Content/Environment/MI_BlockoutSimple_Inst.uasset" 342
+"../../../../../../Unreal Projects/CoopGame/Content/Environment/M_BasicBox.uasset" 343
+"../../../Engine/Content/EngineSky/M_Sky_Panning_Clouds2.uasset" 344
+"../../../../../../Unreal Projects/CoopGame/Content/Maps/Blockout_P_BuiltData.uasset" 345
+"../../../Engine/Content/EditorBlueprintResources/StandardMacros.uasset" 346
+"../../../Engine/Content/Functions/Engine_MaterialFunctions02/Utility/Sine_Remapped.uasset" 347
+"../../../../../../Unreal Projects/CoopGame/Content/Powerups/M_PowerupLightFunction.uasset" 348
+"../../../../../../Unreal Projects/CoopGame/Content/Powerups/BP_Powerup_Base.uasset" 349
+"../../../../../../Unreal Projects/CoopGame/Content/Powerups/M_Powerup.uasset" 350
+"../../../../../../Unreal Projects/CoopGame/Content/Powerups/MI_PowerupHealth.uasset" 351
+"../../../../../../Unreal Projects/CoopGame/Content/Powerups/HealthIcon.uasset" 352
+"../../../../../../Unreal Projects/CoopGame/Content/Powerups/Powerup_HealthRegen.uasset" 353
+"../../../../../../Unreal Projects/CoopGame/Content/Powerups/MI_PowerupSpeed.uasset" 354
+"../../../../../../Unreal Projects/CoopGame/Content/Powerups/SpeedIcon.uasset" 355
+"../../../../../../Unreal Projects/CoopGame/Content/Powerups/Powerup_SuperSpeed.uasset" 356
+"../../../../../../Unreal Projects/CoopGame/Content/Powerups/T_CircleMask3.uasset" 357
+"../../../../../../Unreal Projects/CoopGame/Content/Powerups/M_PowerupDecal.uasset" 358
+"../../../../../../Unreal Projects/CoopGame/Content/Powerups/BP_TestPickup.uasset" 359
+"../../../../../../Unreal Projects/CoopGame/Content/Weapons/SK_Rifle_Skeleton.uasset" 360
+"../../../../../../Unreal Projects/CoopGame/Content/Weapons/Crosshairs/T_Crosshair_Scanline_M.uasset" 361
+"../../../../../../Unreal Projects/CoopGame/Content/Weapons/Crosshairs/T_Crosshair_Horizontal_M.uasset" 362
+"../../../../../../Unreal Projects/CoopGame/Content/Weapons/Crosshairs/M_Crosshairs_MultiHolo_Scanline.uasset" 363
+"../../../../../../Unreal Projects/CoopGame/Content/Weapons/MagGun_02_N.uasset" 364
+"../../../../../../Unreal Projects/CoopGame/Content/Weapons/MI_Rifle02.uasset" 365
+"../../../../../../Unreal Projects/CoopGame/Content/Weapons/MI_Rifle01.uasset" 366
+"../../../../../../Unreal Projects/CoopGame/Content/Weapons/SK_Rifle.uasset" 367
+"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/Muzzle/MuzzleTwo_2048_6x6.uasset" 368
+"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/Muzzle/MuzzleSmokeOne_1024_11x11.uasset" 369
+"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/Muzzle/MuzzleFlash_Master.uasset" 370
+"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/Muzzle/MuzzleFlash_Master_Inst.uasset" 371
+"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/Muzzle/MuzzleFlash_Master_Inst_2.uasset" 372
+"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/Muzzle/P_Muzzle_Large.uasset" 373
+"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/GenericImpact/T_SparkCore_2X2.uasset" 374
+"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/GenericImpact/M_spark_subUV.uasset" 375
+"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/GenericImpact/Flare_02.uasset" 376
+"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/GenericImpact/M_LensFlare_02.uasset" 377
+"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/GenericImpact/P_RifleImpact.uasset" 378
+"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/BloodImpact/T_BloodSplat_03_SubUV.uasset" 379
+"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/BloodImpact/M_blood_splash_03.uasset" 380
+"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/BloodImpact/T_BloodSplatter_Frames01.uasset" 381
+"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/BloodImpact/M_blood_splash_01.uasset" 382
+"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/BloodImpact/clouds_dust_detail_01.uasset" 383
+"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/BloodImpact/M_blood_cloud_01.uasset" 384
+"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/BloodImpact/P_blood_splash_02.uasset" 385
+"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/BasicTracer/Beam.uasset" 386
+"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/BasicTracer/M_Beam.uasset" 387
+"../../../../../../Unreal Projects/CoopGame/Content/WeaponEffects/BasicTracer/P_SmokeTrail.uasset" 388
+"../../../../../../Unreal Projects/CoopGame/Content/Blueprints/CamShake_RifleFire.uasset" 389
+"../../../../../../Unreal Projects/CoopGame/Content/Blueprints/BP_Rifle.uasset" 390
+"../../../../../../Unreal Projects/CoopGame/Content/UI/WBP_Crosshair.uasset" 391
+"../../../../../../Unreal Projects/CoopGame/Content/UI/T_HealthMask.uasset" 392
+"../../../../../../Unreal Projects/CoopGame/Content/UI/M_HealthIndicator.uasset" 393
+"../../../../../../Unreal Projects/CoopGame/Content/UI/WBP_HealthIndicator.uasset" 394
+"../../../../../../Unreal Projects/CoopGame/Content/Blueprints/PlayerPawn.uasset" 395
+"../../../../../../Unreal Projects/CoopGame/Content/Blueprints/BP_GameState.uasset" 396
+"../../../../../../Unreal Projects/CoopGame/Content/Blueprints/EnvQueryCOntext_AllPlayers.uasset" 397
+"../../../../../../Unreal Projects/CoopGame/Content/Blueprints/EnvQueryContext_BotSpawns.uasset" 398
+"../../../../../../Unreal Projects/CoopGame/Content/Blueprints/EQS_FindSpawnLocation.uasset" 399
+"../../../../../../Unreal Projects/CoopGame/Content/AdvancedAI/BP_Rifle_AI.uasset" 400
+"../../../../../../Unreal Projects/CoopGame/Content/AdvancedAI/EQS_FindNearestPlayer.uasset" 401
+"../../../../../../Unreal Projects/CoopGame/Content/AdvancedAI/EnvQueryContext_TargetActor.uasset" 402
+"../../../../../../Unreal Projects/CoopGame/Content/AdvancedAI/EQS_FindMoveTo.uasset" 403
+"../../../../../../Unreal Projects/CoopGame/Content/AdvancedAI/Task_AttackTarget.uasset" 404
+"../../../../../../Unreal Projects/CoopGame/Content/AdvancedAI/Service_SelectTargetActor.uasset" 405
+"../../../../../../Unreal Projects/CoopGame/Content/AdvancedAI/Decorator_DistanceTo.uasset" 406
+"../../../../../../Unreal Projects/CoopGame/Content/AdvancedAI/BB_AdvancedAI.uasset" 407
+"../../../../../../Unreal Projects/CoopGame/Content/AdvancedAI/BT_AdvancedAI.uasset" 408
+"../../../../../../Unreal Projects/CoopGame/Content/AdvancedAI/BP_AdvancedAI.uasset" 409
+"../../../../../../Unreal Projects/CoopGame/Content/Blueprints/BP_TestGameMode.uasset" 410
+"../../../Engine/Content/EngineSky/SM_SkySphere.uasset" 411
+"../../../Engine/Content/EngineSky/C_Sky_Zenith_Color.uasset" 412
+"../../../Engine/Content/EngineSky/C_Sky_Horizon_Color.uasset" 413
+"../../../Engine/Content/EngineSky/C_Sky_Cloud_Color.uasset" 414
+"../../../Engine/Content/EngineSky/BP_Sky_Sphere.uasset" 415
+"../../../../../../Unreal Projects/CoopGame/Content/Maps/Blockout_P.umap" 416
+"../../../Engine/Content/EngineMaterials/Grid.uasset" 417
+"../../../Engine/Content/EditorMaterials/Thumbnails/FloorPlaneMaterial.uasset" 418
+"../../../Engine/Content/EditorMaterials/Cloth/CameraLitDoubleSided.uasset" 419
+"../../../../../../Unreal Projects/CoopGame/Content/Maps/P_Blockout.umap" 420
+"../../../Engine/Content/MapTemplates/SM_Template_Map_Floor.uasset" 421
+"../../../../../../Unreal Projects/CoopGame/Content/Maps/P_TestMap_BuiltData.uasset" 422
+"../../../../../../Unreal Projects/CoopGame/Content/Maps/P_TestMap.umap" 423
 "../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/Crouch_Idle_Rifle_Ironsights.uasset" 424
 "../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/Crouch_Walk_Fwd_Rifle_Ironsights.uasset" 425
 "../../../../../../Unreal Projects/CoopGame/Content/AnimStarterPack/Equip_Pistol_Standing.uasset" 426
