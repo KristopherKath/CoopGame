@@ -31,6 +31,7 @@ ASCharacter::ASCharacter()
 	GetCapsuleComponent()->SetCollisionResponseToChannel(COLLISION_WEAPON, ECR_Ignore);
 
 	HealthComp = CreateDefaultSubobject<USHealthComponent>(TEXT("HealthComp"));
+	HealthComp->SetIsReplicated(true);
 
 	ZoomedFOV = 65;
 	ZoomInterpSpeed = 20;

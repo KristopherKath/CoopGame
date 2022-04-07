@@ -205,6 +205,8 @@ void ASTrackerBot::HandleTakeDamage(USHealthComponent* OwningHealthComp,
 	}
 }
 
+
+
 void ASTrackerBot::NotifyActorBeginOverlap(AActor* OtherActor)
 {
 	Super::NotifyActorBeginOverlap(OtherActor);

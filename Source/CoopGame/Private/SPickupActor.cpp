@@ -6,6 +6,7 @@
 #include "SPowerupActor.h"
 #include "Components/SphereComponent.h"
 #include "Components/DecalComponent.h"
+#include "Components/SHealthComponent.h"
 
 // Sets default values
 ASPickupActor::ASPickupActor()
@@ -51,6 +52,9 @@ void ASPickupActor::Respawn()
 //when collided with by actor
 void ASPickupActor::NotifyActorBeginOverlap(AActor* OtherActor)
 {
+	USHealthComponent* OtherActorHealthComp = Cast<USHealthComponent>(OtherActor->GetComponentByClass(USHealthComponent::StaticClass()));
+	if (!OtherActorHealthComp || OtherActorHealthComp->TeamNum == 255) { return; }
+
 	Super::NotifyActorBeginOverlap(OtherActor);
 
 	//Grant powerup if available

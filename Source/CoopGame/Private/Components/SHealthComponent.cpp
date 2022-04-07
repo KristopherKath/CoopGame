@@ -13,8 +13,6 @@ USHealthComponent::USHealthComponent()
 	bIsDead = false;
 
 	TeamNum = 255;
-
-	SetIsReplicated(true); //set component to replicate
 }
 
 

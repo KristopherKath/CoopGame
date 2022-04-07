@@ -48,7 +48,6 @@ protected:
 
 		//Health Functions
 	UFUNCTION() //marked to work with events
-
 	void OnHealthChanged(USHealthComponent* OwningHealthComp, float Health, float HealthDelta,
 		const class UDamageType* DamageType, class AController* InstigatedBy, AActor* DamageCauser);
 

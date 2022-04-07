@@ -29,7 +29,7 @@ void ASPowerupActor::OnTickPowerup()
 		bIsPowerupActive = false; //replicates to all clients. OnRep_PowerupActive will be called for each client
 		OnRep_PowerupActive(); //call rep function for the server as well
 
-		//Delete Timer
+		//Reset Timer
 		GetWorldTimerManager().ClearTimer(TimerHandle_PowerupTick);
 	}
 }
